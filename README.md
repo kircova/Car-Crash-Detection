@@ -1,6 +1,6 @@
 # Accident Detection in Traffic
 
-**Berk Açıkgöz and Yusufhan Kırçova
+Berk Açıkgöz and Yusufhan Kırçova
 
 ## Problem Definition and Objective
 
