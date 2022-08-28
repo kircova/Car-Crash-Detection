@@ -1,8 +1,8 @@
-# Accident Detection in Traffic**
+# Accident Detection in Traffic
 
-**Berk Açıkgöz – 26631 Yusufhan Kırçova – 26678**
+**Berk Açıkgöz and Yusufhan Kırçova
 
-## Problem Definition and Objective**
+## Problem Definition and Objective
 
 Each year, 1.35 million people are killed on roadways, and every day almost 3,700 people are killed globally in motor vehicle crashes (WHO,2021). It is estimated to be the 8th leading cause of death globally and leading cause of death for children and young adults 5-29 years of age. It is estimated that crash injuries cost the world approximately 1.8 trillion dollars. Statistics show that low- and middle-income countries are more affected by motor vehicle crashes. Crash death rates are over three times higher in low-income countries. While possessing %60 of the world’s registered vehicles, low-income countries are responsible for the %90 of the world’s motor vehicle deaths.
 
@@ -18,7 +18,8 @@ The accident detection algorithm proposed by Ijjina et al (2019) consists of two
 
 - Vehicle Detection and Vehicle Tracking
 - Accident Detection
-### 1. Vehicle Detection and Vehicle Tracking**
+
+### 1. Vehicle Detection and Vehicle Tracking
 
 First part of the project was to detect the vehicles in a given image using object detection frameworks. This was necessary since the project requires objects to be tracked in order to gather vehicle movement data. YOLOv3 (You Only Look Once, Version 3) is a real-time object detection algorithm that identifies specific objects in videos, live feeds, or images (Redmon et al, 2016). YOLOv3 was used to detect vehicles in a given image. Centroid tracking was utilized to achieve object tracking, so that moving objects can be identified and movement data such as speed, acceleration and movement trajectory can be extracted (Nascimento et al, 1999).
 
@@ -80,7 +81,9 @@ We applied the YOLOv3 Algorithm to detect objects in given frames (Redmon et al,
 
 ![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.009.jpeg)YOLOv3 provides results with high accuracy and high confidence. Most of the images we tested had almost perfect results. Since we were only looking at cars, trucks and busses; YOLOv3 was more than enough for our project. The detected objects were held in a box array which will be used throughout the implementation of other steps. Below images are some examples of object detection using YOLOv3
 
+
 Figure 2: Object Detection using YOLOv3![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.010.jpeg)
+
 
 
 ![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.011.png)
