@@ -83,12 +83,12 @@ We applied the YOLOv3 Algorithm to detect objects in given frames (Redmon et al,
 
 
 
-Figure 2: Object Detection using YOLOv3![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.010.jpeg)
+Figure 2: Object Detection using YOLOv3
+
+![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.010.jpeg)
 
 
-
- 
- ![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.011.png)
+![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.011.png)
 
 
 Figure 3: Object Detection using YOLOv3
