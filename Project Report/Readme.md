@@ -1,10 +1,8 @@
-# EE 417 TERM PROJECT
-
-**Accident Detection in Traffic**
+# Accident Detection in Traffic**
 
 **Berk Açıkgöz – 26631 Yusufhan Kırçova – 26678**
 
-**Problem Definition and Objective**
+## Problem Definition and Objective**
 
 Each year, 1.35 million people are killed on roadways, and every day almost 3,700 people are killed globally in motor vehicle crashes (WHO,2021). It is estimated to be the 8th leading cause of death globally and leading cause of death for children and young adults 5-29 years of age. It is estimated that crash injuries cost the world approximately 1.8 trillion dollars. Statistics show that low- and middle-income countries are more affected by motor vehicle crashes. Crash death rates are over three times higher in low-income countries. While possessing %60 of the world’s registered vehicles, low-income countries are responsible for the %90 of the world’s motor vehicle deaths.
 
@@ -12,7 +10,7 @@ Project objective is to develop a software, which can detect motor vehicle crash
 
 Next steps for our project would be to predict the car crashes beforehand using live footage and warning the drivers. Therefore, the system might prevent accidents before they occur.
 
-**Problem Formulation and Solution Method**
+## Problem Formulation and Solution Method
 
 Given a video input, in order to detect accidents in traffic we must utilize Object detection, Object tracking to gather vehicle movement data. Using the data gathered from the input, unordinary movement will be analyzed using speed, acceleration anomaly, change in angle anomaly and vehicle overlap. Our analysis will provide an integer which will show if an accident occurs or not in the given footage.
 
@@ -20,11 +18,11 @@ The accident detection algorithm proposed by Ijjina et al (2019) consists of two
 
 - Vehicle Detection and Vehicle Tracking
 - Accident Detection
-1. **Vehicle Detection and Vehicle Tracking**
+### 1. Vehicle Detection and Vehicle Tracking**
 
 First part of the project was to detect the vehicles in a given image using object detection frameworks. This was necessary since the project requires objects to be tracked in order to gather vehicle movement data. YOLOv3 (You Only Look Once, Version 3) is a real-time object detection algorithm that identifies specific objects in videos, live feeds, or images (Redmon et al, 2016). YOLOv3 was used to detect vehicles in a given image. Centroid tracking was utilized to achieve object tracking, so that moving objects can be identified and movement data such as speed, acceleration and movement trajectory can be extracted (Nascimento et al, 1999).
 
-2. **Accident Detection**
+### 2. Accident Detection
 
 We implemented an accident detection algorithm which was used to detect car crashes using anomalies in vehicle movement. This algorithm and along with some threshold information have been published by IEEE and have been used in our project.
 
@@ -68,7 +66,7 @@ Since we will be taking into consideration both acceleration and speed, we must 
 
 Using all of the variables which have been collected by different operations we are going to calculate the probability of an accident. Acceleration Anomaly, Trajectory Anomaly and Change in Angle Anomaly are all taken into consideration while calculating the final value. The combination of all the parameters are used in a function which takes into weightages of each individual threshold. At last if the final value is greater than 0.5 then it is considered as a vehicular accident.
 
-**Implementation and Results**
+## Implementation and Results
 
 Jupyter-notebook was used during the implementation since it helped us to run python scripts part by part without having to go over the whole code block.
 
@@ -84,11 +82,13 @@ We applied the YOLOv3 Algorithm to detect objects in given frames (Redmon et al,
 
 Figure 2: Object Detection using YOLOv3![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.010.jpeg)
 
+
 ![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.011.png)
+
 
 Figure 3: Object Detection using YOLOv3
 
-**Object Tracking**
+### Object Tracking
 
 The centroid tracking algorithm was used to track the objects detected with YOLO v3 (Nascimento et al, 1999). The algorithm works on the simple principle that a centroid (center of the rectangle of the detected object) in one frame must be closest to the centroid that belongs to the same object in the next frame, even if the object moves. An implementation of centroid tracking was utilized alongside YOLO v3 to track the moving vehicles (Rosebrock, 2018). Some snapshots that display the tracked objects can be found below.
 
@@ -99,7 +99,7 @@ Figure 4.2: The tracked objects at the moment of the accident
 
 Figure 4.3: The tracked objects at the after the accident![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.014.jpeg)
 
-**Accident Detection**
+### Accident Detection
 
 The angle and acceleration at given moments were calculated as per explained in the Problem Formulation and Solution Method section. The three parameters; Acceleration Anomaly (α), Trajectory Anomaly (β) and Change in Angle Anomaly (ɣ) were calculated in light of the methodology explained in (Ijjina et al., 2019).
 
@@ -115,7 +115,7 @@ For the change in angle anomaly, the difference between the angles in two adjace
 
 Finally, these three parameters are all given weights, chosen as 0.2 for alpha, 0.35 for beta and 0.45 by gamma in our case, and if the weighted sum of these three parameters exceed 0.5, it is decided that an accident occured between the given vehicle/object pair.
 
-**Discussion of Results**
+## Discussion of Results
 
 In our first trial, there were only two accidents detected: between object ID 0 and 4, and between object ID 1 and 13. However, only the accident between ID 1 and 13 actually occurred, which has a larger score than the other detected accident. The output is given below:
 
@@ -137,7 +137,7 @@ Final score for pair (3, 5) is  0.08
 
 The detection between objects 0 and 2 are successfully detected, whereas the interaction between objects 3 and 5 are not deemed as an accident, as the total score is below 0.5. As no vehicle is obstructed for a long time by another, no such false positives are observed.
 
-**Resources**
+## Resources
 
 Garima13a (2018). YOLO Object Detection. Retrieved from <https://github.com/Garima13a/YOLO-Object-Detection> on January 8, 2022.
 
