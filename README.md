@@ -1,14 +1,55 @@
-# Accident Detection in Traffic
+# Accident Detection in Video
 
-Developed by Berk Açıkgöz and Yusufhan Kırçova
+This IPython notebook project aims to detect accidents in a video input using computer vision techniques. The project utilizes object detection, centroid tracking, and anomaly detection algorithms to identify potential accidents in the video.
 
-## Problem Definition and Objective
+## Prerequisites
+To run this project, you need to have the following dependencies installed:
+- OpenCV
+- imutils
+- numpy
+- youtube_dl
+- matplotlib
 
-Each year, 1.35 million people are killed on roadways, and every day almost 3,700 people are killed globally in motor vehicle crashes (WHO,2021). It is estimated to be the 8th leading cause of death globally and leading cause of death for children and young adults 5-29 years of age. It is estimated that crash injuries cost the world approximately 1.8 trillion dollars. Statistics show that low- and middle-income countries are more affected by motor vehicle crashes. Crash death rates are over three times higher in low-income countries. While possessing %60 of the world’s registered vehicles, low-income countries are responsible for the %90 of the world’s motor vehicle deaths.
+You can install these dependencies using pip:
+```
+pip install opencv-python imutils numpy youtube_dl matplotlib
+```
 
-Project objective is to develop a software, which can detect motor vehicle crashes as soon as it occurs, depending on parameters such as vehicle speed and vehicle direction. Furthermore, a system in which the emergency contacts of the drivers and local emergency services are notified of the crash, can be used to provide help to the injured people. This project is related to Feature detection, Object Recognition, Visual Tracking Motion Estimation and Anomaly Detection. A system in which can
+## Project Overview
+The project consists of the following main steps:
 
-Next steps for our project would be to predict the car crashes beforehand using live footage and warning the drivers. Therefore, the system might prevent accidents before they occur.
+1. Loading the YOLOv3 object detection model: The project utilizes the YOLOv3 model for object detection. The model architecture, pre-trained weights, and object class names are loaded from the corresponding files.
+
+2. Object Detection: The video frames are processed sequentially, and objects are detected in each frame using the YOLOv3 model. The bounding boxes of the detected objects are drawn on the frame.
+
+3. Centroid Tracking: The project employs a centroid tracker algorithm to track the detected objects across consecutive frames. The algorithm assigns unique IDs to each object and tracks their centroids over time.
+
+4. Anomaly Detection: The project performs two types of anomaly detection: acceleration anomaly detection and trajectory anomaly detection.
+
+    - Acceleration Anomaly Detection: For overlapping objects in frames, the project calculates the acceleration before and after the overlap. An anomaly score is assigned based on the difference between the magnitudes of these accelerations.
+    
+    - Trajectory Anomaly Detection: The project detects anomalies in the trajectory of overlapping objects. The angle between the trajectories is calculated, and an anomaly score is assigned based on whether the angle falls within a specified range.
+    
+    - Change in Angle Anomaly Detection: The project measures the change in angle between consecutive frames for overlapping objects. Anomaly scores are assigned based on the magnitude of this change.
+    
+5. Final Decision: The anomaly scores from different detection methods are combined to obtain a final score for each object pair. The weights for combining the scores can be adjusted to prioritize different detection methods.
+
+6. Accident Prediction: Based on the final scores, the project determines if an accident is occurring in the video.
+
+## How to Use
+1. Install the required dependencies as mentioned in the prerequisites section.
+
+2. Set the paths to the YOLOv3 configuration file, pre-trained weights file, and the COCO object classes file.
+
+3. Adjust the parameters for anomaly detection, such as the number of frames to consider before and after an overlap and the thresholds for anomaly scoring.
+
+4. Run the notebook to process the video frames and detect accidents.
+
+Note: Make sure to update the file paths and other parameters according to your system configuration and requirements.
+
+Please feel free to modify and customize the code to fit your specific needs and improve the accuracy of accident detection.
+
+## Workflow - Understanding the algorithm and findings
 
 ## Problem Formulation and Solution Method
 
@@ -95,9 +136,11 @@ Figure 3: Object Detection using YOLOv3
 The centroid tracking algorithm was used to track the objects detected with YOLO v3 (Nascimento et al, 1999). The algorithm works on the simple principle that a centroid (center of the rectangle of the detected object) in one frame must be closest to the centroid that belongs to the same object in the next frame, even if the object moves. An implementation of centroid tracking was utilized alongside YOLO v3 to track the moving vehicles (Rosebrock, 2018). Some snapshots that display the tracked objects can be found below.
 
 
-Fig. 4.1: The state of tracked objects just before an accident.![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.012.jpeg)![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.013.jpeg)
+Fig. 4.1: The state of tracked objects just before an accident.![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.012.jpeg)
 
-Figure 4.2: The tracked objects at the moment of the accident
+
+Figure 4.2: The tracked objects at the moment of the accident ![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.013.jpeg)
+
 
 Figure 4.3: The tracked objects at the after the accident![](Aspose.Words.317b1e53-f6b5-4bda-9e01-ceda73057bd5.014.jpeg)
 
@@ -138,6 +181,8 @@ Final score for pair (0, 2) is  0.6652992124147674
 Final score for pair (3, 5) is  0.08
 
 The detection between objects 0 and 2 are successfully detected, whereas the interaction between objects 3 and 5 are not deemed as an accident, as the total score is below 0.5. As no vehicle is obstructed for a long time by another, no such false positives are observed.
+
+
 
 ## Resources
 
